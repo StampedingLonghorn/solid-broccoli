@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Silver Calculator</title>
+        <style>
+            body {
+                font-family: sans-serif;
+            }
+            input {
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <form>
+            <fieldset>
+                <label for="usdTOZ">What is the price for 1 troy ounce of silver?</label><br>
+                $<input type="text" id="usdTOZ" name="usdTOZ"><br><br>          
+                
+                <input type="radio" id="halfDollars70" name="coinType">
+                <label for="halfDollars70">Half Dollars (1965-1970)</label><br>
+                <input type="radio" id="halfDollars64" name="coinType">
+                <label for="halfDollars64">Half Dollars (before 1965)</label><br>
+                <input type="radio" id="quarters" name="coinType">
+                <label for="quarters">Quarters (before 1965)</label><br>
+                <input type="radio" id="dimes" name="coinType">
+                <label for="dimes">Dimes (before 1965)</label><br>
+                <input type="radio" id="nickels" name="coinType">
+                <label for="nickels">Nickels (1942-1945)</label><br><br>
+
+                <label for="faceValue">What is the face value?</label>
+                $<input type="number" id="faceValue" name="faceValue"><br><br>
+
+                <input type="button" value="Calculate" onclick="chaChing();">
+                <input type="reset" value="Reset"><br><br>
+
+                <label for="coinValue">The silver content is worth</label>
+                $<input type="text" id="coinValue" name="coinValue">
+            </fieldset>
+        </form>
+
+        <script>
+            function chaChing() {
+                // Declaring variable for the value of 1 troy ounce of silver.
+                var usdTOZ = parseFloat(document.getElementById('usdTOZ').value);
+                
+                // If statement determines whether half dollars are checked and…
+                if (document.getElementById('halfDollars70').checked) {
+                    var coinSilverAmount = 0.1479; // Declares variable for the amount of silver each half dollar between 1965 and 1970 contains
+                    var fvToCoins = 2; // Declares variable to convert the face value to the number of coins
+                }
+
+                // If statement determines whether half dollars are checked and…
+                if (document.getElementById('halfDollars64').checked) {
+                    var coinSilverAmount = 0.362; // Declares variable for the amount of silver each half dollar before 1965 contains
+                    var fvToCoins = 2; // Declares variable to convert the face value to the number of coins
+                }
+                
+                // If statement determines whether quarters are checked and…
+                if (document.getElementById('quarters').checked) {
+                    var coinSilverAmount = 0.1808; // Declares variable for the amount of silver each quarter before 1965 contains
+                    var fvToCoins = 4; // Declares variable to convert the face value to the number of coins
+                }
+
+                // If statement determines whether dimes are checked and…
+                if (document.getElementById('dimes').checked) {
+                    var coinSilverAmount = 0.0723; // Declares variable for the amount of silver each dime before 1965 contains
+                    var fvToCoins = 10; // Declares variable to convert the face value to the number of coins
+                }
+
+                // If statement determines whether nickels are checked and…
+                if (document.getElementById('nickels').checked) {
+                    var coinSilverAmount = 0.056; // Declares variable for the amount of silver each nickel (1942-1945) contains
+                    var fvToCoins = 20; // Declares variable to convert the face value to the number of coins
+                }
+
+                // Declares variable that converts the face value to the number of coins
+                var coins = parseFloat(document.getElementById('faceValue').value) * fvToCoins;
+
+                // Declares variable that shows how much the silver content is worth by multiplying the silver amount in each coin by the number of coins by the dollar value for a troy ounce of silver
+                var coinValue = coinSilverAmount * coins * usdTOZ;
+
+                // Changes the last textbox to the silver content fixed to 2 decimal places
+                document.getElementById('coinValue').value = coinValue.toFixed(2);
+            }
+        </script>
+    </body>
+</html>
